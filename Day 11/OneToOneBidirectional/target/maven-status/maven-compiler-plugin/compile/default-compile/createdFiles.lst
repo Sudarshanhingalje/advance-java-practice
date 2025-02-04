@@ -1,0 +1,5 @@
+com\demo\test\TestDeleteCourse.class
+com\demo\test\TestFaculty.class
+com\demo\beans\Faculty.class
+com\demo\test\TestOneToOne.class
+com\demo\beans\Course.class

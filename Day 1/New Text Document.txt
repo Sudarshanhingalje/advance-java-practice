@@ -1,0 +1,96 @@
+package com.demo.test;
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class SQL 
+{
+
+	PreparedStatement pst = null;
+	Statement statement = null;
+     ResultSet rs = null;
+     try
+	{
+		//Register Driver
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		String url = "jdbc:mysql://192.168.10.150:3306/dac18";
+		//Get Connection
+		Connection conn = DriverManager.getConnection(url, "dac18", "welcome");
+		if (conn!=null) {
+			System.out.println("Connection Done!");
+		}
+		else
+		{
+
+
+				int userId = 1;
+				String password = "Rushi";
+				String Email_id = "R@gmail.com";
+	
+
+				/************************** Insert for *******************/
+				pst = conn.prepareStatement("INSERT INTO students values (?,?,?)");
+
+				pst.setInt(1, userId);
+
+				pst.setString(2, password);
+
+				pst.setString(3, Email_id);
+				
+				
+
+				// ******************* Update for*******************/
+				pst = conn.prepareStatement("update students set name = ? where id = ?");
+
+				pst.setString(1, password);
+				pst.setInt(2, userId);
+
+				
+				
+				// **************************Delte for*******************/
+				pst = conn.prepareStatement("DELETE FROM students  WHERE userId='" + userId + "' ");
+				
+				
+
+				// **************************Select Query for*******************/
+				statement = conn.createStatement();
+
+				rs = statement.executeQuery("SELECT * FROM students");
+
+				while (rs.next()) {
+					int user_Id = rs.getInt("id");
+					String Password = rs.getString("name");
+					String Email = rs.getString("email");
+					System.out.println("User ID: " + user_Id + ", Password: " + Password + " , Email: " + Email);
+				}
+				
+				
+
+				// **************************Validation*******************/
+				int rowsAffected = pst.executeUpdate();
+
+				// Checking if the update was successful
+				if (rowsAffected > 0) {
+					System.out.println("successfully for user: " + userId);
+				} else {
+					System.out.println("No user found with the username: " + userId);
+				}
+
+				System.out.println("Successfully");
+
+			
+
+		}
+		
+	}catch(
+	SQLException e)
+	{
+
+		e.printStackTrace();
+	}
+}}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+	xmlns:context="http://www.springframework.org/schema/context">
+	
+	
+	<bean id="p1" class="com.demo.beans.Product">
+	   <property name="pid" value="12"></property>
+	   <property name="pname" value="Chair"></property>
+	   <property name="qty" value="20"></property>
+	   <property name="price" value="1200"></property>
+	</bean>
+	<bean id="p2" class="com.demo.beans.Product">
+	   <property name="pid" value="121"></property>
+	   <property name="pname" value="table"></property>
+	   <property name="qty" value="45"></property>
+	   <property name="price" value="7000"></property>
+	</bean>
+	<bean id="c1" class="com.demo.beans.Customer" scope="singleton">
+	   <property name="cid" value="100"></property>
+	   <property name="cname" value="Rajan"></property>
+	   <property name="mob" value="452342"></property>
+	  
+	</bean>
+	<bean id="c2" class="com.demo.beans.Customer">
+	   <constructor-arg index="0" value="234"></constructor-arg>
+	   <constructor-arg index="1" value="Revati"></constructor-arg>
+	   <constructor-arg index="2" value="45678"></constructor-arg>
+	</bean>
+	<!-- <bean id="c2" class="com.demo.beans.Customer">
+	   <constructor-arg type="int" value="234"></constructor-arg>
+	   <constructor-arg type="string" value="Revati"></constructor-arg>
+	   <constructor-arg type="string" value="45678"></constructor-arg> 
+	</bean> -->
+	
+
+</beans>
